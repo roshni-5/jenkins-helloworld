@@ -9,6 +9,9 @@ pipeline {
         }
         
         stage('Test') {
+            when {
+                expression { return false }  // Change to false to skip test
+            }
             steps {
                 echo 'Testing..'
             }
@@ -23,13 +26,7 @@ pipeline {
     
     post {
         always {
-            echo 'This will always run'
-        }
-        success {
-            echo 'Pipeline succeeded!'
-        }
-        failure {
-            echo 'Pipeline failed!'
+            echo 'Pipeline completed'
         }
     }
 }
